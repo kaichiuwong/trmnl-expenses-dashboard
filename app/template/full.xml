@@ -1,6 +1,6 @@
 <div class="layout layout--col layout--stretch" style="width:100%; box-sizing:border-box; font-family: Arial, Helvetica, sans-serif;">
   <!--         ── Upper section: Spent + Budget Left, stacked vertically (full width) ──         -->
-  <div style="width:100%; box-sizing:border-box; display:flex; flex-direction:column; padding-top:10px; gap:6px; font-family: Arial, Helvetica, sans-serif; background:#cccccc; padding:10px; border-radius:10px;">
+  <div style="width:100%; box-sizing:border-box; display:flex; flex:0 0 auto; height:auto; flex-direction:column; gap:6px; font-family: Arial, Helvetica, sans-serif; background:#cccccc; padding:10px; border-radius:10px;">
     <div style="display:flex; justify-content:space-between; align-items:baseline;">
       <span style="font-size:40px; font-weight:300; font-family: Arial, Helvetica, sans-serif;">Money Spent</span>
       <span style="font-size:60px; font-weight:800; line-height:1;">
@@ -16,7 +16,7 @@
       {% assign bl_bg = '#000' %}
       {% assign bl_fg = '#fff' %}
       
-      {% elsif percent_left &lt;= 10 %}
+      {% elsif percent_left <= 10 %}
       {% assign bl_bg = '#ddd' %}
       {% assign bl_fg = '#000' %}
       {% else %}
@@ -27,7 +27,7 @@
       <div style="display:flex; justify-content:space-between; align-items:baseline; background:{{ bl_bg }}; color:{{ bl_fg }};">
         <span style="font-size:40px; font-weight:300; font-family: Arial, Helvetica, sans-serif;">
         Budget Left 
-        {% if percent_left &lt;= 10 %}
+        {% if percent_left <= 10 %}
            ⚠
         {% endif %}
       </span>
@@ -50,7 +50,7 @@
         </div>
         <!--         Upper: spend position         -->
         <div style="position:absolute; top:10px; left:{{ percent_spent }}%; transform:translateX(-50%); width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:9px solid #000;"></div>
-        {% if percent_spent >= 50 %}
+        {% if percent_spent >= 80 %}
           <span style="position:absolute; top:8px; right:{{ 100 | minus: percent_spent }}%; padding-right:10px; font-size:12px; font-weight:300; white-space:nowrap; line-height:1;">
             <span style="font-weight:800;">
               {{ percent_spent_fmt }}
@@ -110,7 +110,7 @@
         {% endif %}
       </div>
   </div>
-  <div style="width:100%; box-sizing:border-box; display:flex; flex-flow:row wrap; gap:6px; flex:1; font-family: Arial, Helvetica, sans-serif;">
+  <div style="width:100%; box-sizing:border-box; display:flex; flex-flow:row wrap; gap:6px; flex:1; min-height:0; font-family: Arial, Helvetica, sans-serif;">
     {% for cat in categories %}
       {% if cat.over_budget %}
         {% assign row_bg = '#000' %}
