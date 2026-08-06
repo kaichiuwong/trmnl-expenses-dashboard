@@ -117,7 +117,7 @@
       <div style="display:flex; align-items:center; gap:8px; flex:0 0 calc((100% - 6px) / 2); width:calc((100% - 6px) / 2); box-sizing:border-box;
       background:{{ row_bg }}; color:{{ row_fg }}; border-radius:6px; padding:2px 8px;">
         <!--        Category name        -->
-        <span style="width:90px; flex-shrink:0; font-size:20px; font-weight:800;
+        <span style="width:150px; flex-shrink:0; font-size:px; font-weight:800;
         font-family: Arial, Helvetica, sans-serif; white-space:nowrap;
         overflow:hidden; text-overflow:ellipsis;">
           {{ cat.name }}
