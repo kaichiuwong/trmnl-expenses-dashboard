@@ -1,11 +1,13 @@
 <div class="layout layout--col layout--stretch" style="width:100%; box-sizing:border-box; font-family: Arial, Helvetica, sans-serif;">
-  <!--        ── Upper section: Spent + Budget Left, stacked vertically (full width) ──        -->
+  <!--         ── Upper section: Spent + Budget Left, stacked vertically (full width) ──         -->
   <div style="width:100%; box-sizing:border-box; display:flex; flex-direction:column; padding-top:10px; gap:6px; font-family: Arial, Helvetica, sans-serif; background:#cccccc; padding:10px; border-radius:10px;">
     <div style="display:flex; justify-content:space-between; align-items:baseline;">
       <span style="font-size:40px; font-weight:300; font-family: Arial, Helvetica, sans-serif;">Money Spent</span>
       <span style="font-size:60px; font-weight:800; line-height:1;">
         
+        
         $
+        
         
         {{ total_spent_fmt }}
       </span>
@@ -13,90 +15,101 @@
     {% if over_total_budget %}
       {% assign bl_bg = '#000' %}
       {% assign bl_fg = '#fff' %}
-      {% elsif percent_left <= 10 %}
+      
+      {% elsif percent_left &lt;= 10 %}
       {% assign bl_bg = '#ddd' %}
       {% assign bl_fg = '#000' %}
       {% else %}
       {% assign bl_bg = 'transparent' %}
       {% assign bl_fg = '#000' %}
     {% endif %}
-    <div style="display:flex; justify-content:space-between; align-items:baseline; background:{{ bl_bg }}; color:{{ bl_fg }};">
-      <span style="font-size:40px; font-weight:300; font-family: Arial, Helvetica, sans-serif;">
+    
+      <div style="display:flex; justify-content:space-between; align-items:baseline; background:{{ bl_bg }}; color:{{ bl_fg }};">
+        <span style="font-size:40px; font-weight:300; font-family: Arial, Helvetica, sans-serif;">
         Budget Left 
-        {% if percent_left <= 10 %}
+        {% if percent_left &lt;= 10 %}
            ⚠
         {% endif %}
       </span>
-      <span style="font-size:60px; font-weight:800; line-height:1;">
+        <span style="font-size:60px; font-weight:800; line-height:1;">
+          
         
           $
           
-        {{ money_left_fmt }}
-      </span>
-    </div>
-    <!--        Gradient divider (under Budget Left): black fills up to percent_spent,
+        
+          {{ money_left_fmt }}
+        </span>
+      </div>
+      <!--         Gradient divider (under Budget Left): black fills up to percent_spent,
       then fades to grey. Upper triangle = spend position; lower triangle
       = current month progress. All in one container so the triangles sit
-      flush against the gradient bar with no gap.        -->
-    <div style="position:relative; height:54px; width:100%;">
-      <div style="position:absolute; top:19px; left:0; height:15px; width:100%; border-radius:8px; overflow:hidden;">
-        <div style="width:100%; height:100%; background:linear-gradient(to right, #000 0%, #000 {{ percent_spent }}%, #cccccc 100%);"></div>
+      flush against the gradient bar with no gap.         -->
+      <div style="position:relative; height:54px; width:100%;">
+        <div style="position:absolute; top:19px; left:0; height:15px; width:100%; border-radius:8px; overflow:hidden;">
+          <div style="width:100%; height:100%; background:linear-gradient(to right, #000 0%, #000 {{ percent_spent }}%, #cccccc 100%);"></div>
+        </div>
+        <!--         Upper: spend position         -->
+        <div style="position:absolute; top:10px; left:{{ percent_spent }}%; transform:translateX(-50%); width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:9px solid #000;"></div>
+        {% if percent_spent >= 50 %}
+          <span style="position:absolute; top:8px; right:{{ 100 | minus: percent_spent }}%; padding-right:10px; font-size:12px; font-weight:300; white-space:nowrap; line-height:1;">
+            <span style="font-weight:800;">
+              {{ percent_spent_fmt }}
+              
+            
+              %
+            
+          
+            </span>
+            
+          
+             allocated budget spent
+          
+        
+          </span>
+          {% else %}
+          <span style="position:absolute; top:8px; left:{{ percent_spent }}%; padding-left:10px; font-size:12px; font-weight:300; white-space:nowrap; line-height:1;">
+            <span style="font-weight:800;">
+              {{ percent_spent_fmt }}
+              
+            
+              %
+            
+          
+            </span>
+            
+          
+             allocated budget spent
+          
+        
+          </span>
+        {% endif %}
+        <!--         Lower: current month progress         -->
+        <div style="position:absolute; top:34px; left:{{ month_percent }}%; transform:translateX(-50%); width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-bottom:9px solid #000;"></div>
+        {% if month_percent >= 50 %}
+          <span style="position:absolute; top:33px; right:{{ 100 | minus: month_percent }}%; padding-right:10px; font-size:12px; font-weight:300; white-space:nowrap; line-height:1;">
+            <span style="font-weight:800;">
+              {{ days_remaining }}
+            </span>
+            
+          
+             days left
+          
+        
+          </span>
+          {% else %}
+          <span style="position:absolute; top:33px; left:{{ month_percent }}%; padding-left:10px; font-size:12px; font-weight:300; white-space:nowrap; line-height:1;">
+            <span style="font-weight:800;">
+              {{ days_remaining }}
+            </span>
+            
+          
+             days left
+          
+        
+          </span>
+        {% endif %}
       </div>
-      <!--        Upper: spend position        -->
-      <div style="position:absolute; top:10px; left:{{ percent_spent }}%; transform:translateX(-50%); width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:9px solid #000;"></div>
-      {% if percent_spent >= 50 %}
-        <span style="position:absolute; top:8px; right:{{ 100 | minus: percent_spent }}%; padding-right:10px; font-size:12px; font-weight:300; white-space:nowrap; line-height:1;">
-          <span style="font-weight:800;">
-            {{ percent_spent_fmt }}
-            
-              %
-            
-          </span>
-          
-             allocated budget spent
-          
-        </span>
-        {% else %}
-        <span style="position:absolute; top:8px; left:{{ percent_spent }}%; padding-left:10px; font-size:12px; font-weight:300; white-space:nowrap; line-height:1;">
-          <span style="font-weight:800;">
-            {{ percent_spent_fmt }}
-            
-              %
-            
-          </span>
-          
-             allocated budget spent
-          
-        </span>
-      {% endif %}
-      <!--        Lower: current month progress        -->
-      <div style="position:absolute; top:34px; left:{{ month_percent }}%; transform:translateX(-50%); width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-bottom:9px solid #000;"></div>
-      {% if month_percent >= 50 %}
-        <span style="position:absolute; top:33px; right:{{ 100 | minus: month_percent }}%; padding-right:10px; font-size:12px; font-weight:300; white-space:nowrap; line-height:1;">
-          <span style="font-weight:800;">
-            {{ days_remaining }}
-          </span>
-          
-             days left
-          
-        </span>
-        {% else %}
-        <span style="position:absolute; top:33px; left:{{ month_percent }}%; padding-left:10px; font-size:12px; font-weight:300; white-space:nowrap; line-height:1;">
-          <span style="font-weight:800;">
-            {{ days_remaining }}
-          </span>
-          
-             days left
-          
-        </span>
-      {% endif %}
-    </div>
   </div>
-  <!--        ── Lower section: per-category tick rows ──
-  Each category has 50 fixed-width ticks spread edge-to-edge.
-  cat.spent_ticks = boundary marker position (1–50).
-  Dark gray = spent · Black = marker · Light gray = remaining.
-    -->
   <div style="width:100%; box-sizing:border-box; display:flex; flex-flow:row wrap; gap:6px; flex:1; font-family: Arial, Helvetica, sans-serif;">
     {% for cat in categories %}
       {% if cat.over_budget %}
@@ -116,13 +129,13 @@
       {% endif %}
       <div style="display:flex; align-items:center; gap:8px; flex:0 0 calc((100% - 6px) / 2); width:calc((100% - 6px) / 2); box-sizing:border-box;
       background:{{ row_bg }}; color:{{ row_fg }}; border-radius:6px; padding:2px 8px;">
-        <!--        Category name        -->
+        <!--         Category name         -->
         <span style="width:120px; flex-shrink:0; font-size:20px; font-weight:800;
         font-family: Arial, Helvetica, sans-serif; white-space:normal;
         overflow-wrap:anywhere; line-height:1.0;">
           {{ cat.name }}
         </span>
-        <!--        50-tick bar, spread full width        -->
+        <!--         50-tick bar, spread full width         -->
         <div style="flex:1; position:relative; display:flex; justify-content:space-between; align-items:center; overflow:hidden;">
           {% assign ticks = cat.spent_ticks | plus: 0 %}
           {% assign spent_count = ticks | minus: 1 %}
@@ -134,36 +147,44 @@
           {% for i in (1..rest_count) %}
             <div style="width:4px; flex-shrink:0; height:60px; background:{{ tick_rest }};"></div>
           {% endfor %}
-          <!--        Percentage watermark overlay        -->
+          <!--         Percentage watermark overlay         -->
           <span style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
           font-size:36px; font-weight:800; color:{{ row_fg }}; opacity:0.30; pointer-events:none;
           white-space:nowrap; font-family: Arial, Helvetica, sans-serif;">
             {{ cat.pct }}
             
+            
             %
+          
           
           </span>
         </div>
-        <!--        Amount cell: spent (upper) over budget allocated (lower)        -->
+        <!--         Amount cell: spent (upper) over budget allocated (lower)         -->
         <div style="width:80px; flex-shrink:0; display:flex; flex-direction:column; align-items:flex-end;
         text-align:right; line-height:1.1; font-family: Arial, Helvetica, sans-serif;">
           {% if cat.name == "RENT" %}
             <span style="font-size:20px; font-weight:800; text-align:right; width:100%;">
               {{ cat.pct }}
               
+              
               %
+            
             
             </span>
             {% else %}
             <span style="font-size:20px; font-weight:800; text-align:right; width:100%;">
               
+              
               $ 
+              
               
               {{ cat.spent_fmt }}
             </span>
             <span style="font-size:12px; color:{{ sub_fg }}; text-align:right; width:100%;">
               
+              
                / $ 
+              
               
               {{ cat.budget_fmt }}
             </span>
