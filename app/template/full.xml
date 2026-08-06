@@ -97,7 +97,7 @@
   cat.spent_ticks = boundary marker position (1–50).
   Dark gray = spent · Black = marker · Light gray = remaining.
     -->
-  <div style="width:100%; box-sizing:border-box; display:flex; flex-direction:column; gap:6px; flex:1; font-family: Arial, Helvetica, sans-serif;">
+  <div style="width:100%; box-sizing:border-box; display:flex; flex-flow:row wrap; gap:6px; flex:1; font-family: Arial, Helvetica, sans-serif;">
     {% for cat in categories %}
       {% if cat.over_budget %}
         {% assign row_bg = '#000' %}
@@ -114,10 +114,10 @@
         {% assign tick_rest = '#dddddd' %}
         {% assign sub_fg = '#666666' %}
       {% endif %}
-      <div style="display:flex; align-items:center; gap:10px; flex:1; width:100%; box-sizing:border-box;
+      <div style="display:flex; align-items:center; gap:8px; flex:0 0 calc((100% - 6px) / 2); width:calc((100% - 6px) / 2); box-sizing:border-box;
       background:{{ row_bg }}; color:{{ row_fg }}; border-radius:6px; padding:2px 8px;">
         <!--        Category name        -->
-        <span style="width:150px; flex-shrink:0; font-size:24px; font-weight:800;
+        <span style="width:90px; flex-shrink:0; font-size:20px; font-weight:800;
         font-family: Arial, Helvetica, sans-serif; white-space:nowrap;
         overflow:hidden; text-overflow:ellipsis;">
           {{ cat.name }}
@@ -145,17 +145,17 @@
           </span>
         </div>
         <!--        Amount cell: spent (upper) over budget allocated (lower)        -->
-        <div style="width:150px; flex-shrink:0; display:flex; flex-direction:column; align-items:flex-end;
+        <div style="width:68px; flex-shrink:0; display:flex; flex-direction:column; align-items:flex-end;
         text-align:right; line-height:1.1; font-family: Arial, Helvetica, sans-serif;">
           {% if cat.name == "RENT" %}
-            <span style="font-size:24px; font-weight:800; text-align:right; width:100%;">
+            <span style="font-size:20px; font-weight:800; text-align:right; width:100%;">
               {{ cat.pct }}
               
               %
             
             </span>
             {% else %}
-            <span style="font-size:24px; font-weight:800; text-align:right; width:100%;">
+            <span style="font-size:20px; font-weight:800; text-align:right; width:100%;">
               
               $ 
               
