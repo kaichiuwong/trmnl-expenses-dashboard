@@ -117,9 +117,9 @@
       <div style="display:flex; align-items:center; gap:8px; flex:0 0 calc((100% - 6px) / 2); width:calc((100% - 6px) / 2); box-sizing:border-box;
       background:{{ row_bg }}; color:{{ row_fg }}; border-radius:6px; padding:2px 8px;">
         <!--        Category name        -->
-        <span style="width:150px; flex-shrink:0; font-size:px; font-weight:800;
-        font-family: Arial, Helvetica, sans-serif; white-space:nowrap;
-        overflow:hidden; text-overflow:ellipsis;">
+        <span style="width:120px; flex-shrink:0; font-size:20px; font-weight:800;
+        font-family: Arial, Helvetica, sans-serif; white-space:normal;
+        overflow-wrap:anywhere; line-height:1.0;">
           {{ cat.name }}
         </span>
         <!--        50-tick bar, spread full width        -->
@@ -145,7 +145,7 @@
           </span>
         </div>
         <!--        Amount cell: spent (upper) over budget allocated (lower)        -->
-        <div style="width:68px; flex-shrink:0; display:flex; flex-direction:column; align-items:flex-end;
+        <div style="width:80px; flex-shrink:0; display:flex; flex-direction:column; align-items:flex-end;
         text-align:right; line-height:1.1; font-family: Arial, Helvetica, sans-serif;">
           {% if cat.name == "RENT" %}
             <span style="font-size:20px; font-weight:800; text-align:right; width:100%;">
