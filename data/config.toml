@@ -1,0 +1,11 @@
+[api]
+enabled = true
+
+# Refresh the expenses dashboard every 30 minutes.
+# Adjust the cron expression to suit your preferred refresh cadence (UTC).
+# Examples:
+#   "*/15 * * * *"  — every 15 minutes
+#   "0 * * * *"     — every hour on the hour
+[functions.update-expenses]
+verify_jwt = false
+schedule = "*/30 * * * *"
