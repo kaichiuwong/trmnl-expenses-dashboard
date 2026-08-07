@@ -1,9 +1,21 @@
-<div class="layout layout--col layout--stretch" style="width:100%; box-sizing:border-box; font-family: Arial, Helvetica, sans-serif;">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+</style>
+<style>
+.cabin-root {
+  font-family: "Cabin", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-variation-settings: "wdth" 70;
+}
+</style>
+<div class="layout layout--col layout--stretch cabin-root" style="width:100%; box-sizing:border-box;">
   <!--         ── Upper section: Spent + Budget Left, stacked vertically (full width) ──         -->
-  <div style="width:100%; box-sizing:border-box; display:flex; flex:0 0 auto; height:auto; flex-direction:column; gap:6px; font-family: Arial, Helvetica, sans-serif; background:#cccccc; padding:10px; border-radius:10px;">
+  <div style="width:100%; box-sizing:border-box; display:flex; flex:0 0 auto; height:auto; flex-direction:column; gap:6px; font-family: 'Cabin', sans-serif; background:#cccccc; padding:10px; border-radius:10px;">
     <div style="display:flex; justify-content:space-between; align-items:baseline;">
-      <span style="font-size:40px; font-weight:300; font-family: Arial, Helvetica, sans-serif;">Money Spent</span>
-      <span style="font-size:60px; font-weight:800; line-height:1;">
+      <span style="font-size:40px; font-weight:700; font-family: 'Cabin', sans-serif;">Money Spent</span>
+      <span style="font-size:60px; font-weight:200; line-height:1;">
         
         
         $
@@ -25,13 +37,13 @@
     {% endif %}
     
       <div style="display:flex; justify-content:space-between; align-items:baseline; background:{{ bl_bg }}; color:{{ bl_fg }};">
-        <span style="font-size:40px; font-weight:300; font-family: Arial, Helvetica, sans-serif;">
+        <span style="font-size:40px; font-weight:700; font-family: 'Cabin', sans-serif;">
         Budget Left 
         {% if percent_left <= 10 %}
            ⚠
         {% endif %}
       </span>
-        <span style="font-size:60px; font-weight:800; line-height:1;">
+        <span style="font-size:60px; font-weight:200; line-height:1;">
           
         
           $
@@ -110,7 +122,7 @@
         {% endif %}
       </div>
   </div>
-  <div style="width:100%; box-sizing:border-box; display:flex; flex-flow:row wrap; gap:6px; flex:1; min-height:0; font-family: Arial, Helvetica, sans-serif;">
+  <div style="width:100%; box-sizing:border-box; display:flex; flex-flow:row wrap; gap:6px; flex:1; min-height:0; font-family: 'Cabin', sans-serif;">
     {% for cat in categories %}
       {% if cat.over_budget %}
         {% assign row_bg = '#000' %}
@@ -130,8 +142,8 @@
       <div style="display:flex; align-items:center; gap:8px; flex:0 0 calc((100% - 6px) / 2); width:calc((100% - 6px) / 2); box-sizing:border-box;
       background:{{ row_bg }}; color:{{ row_fg }}; border-radius:6px; padding:2px 8px;">
         <!--         Category name         -->
-        <span style="width:120px; flex-shrink:0; font-size:20px; font-weight:800;
-        font-family: Arial, Helvetica, sans-serif; white-space:normal;
+        <span style="width:140px; flex-shrink:0; font-size:24px; font-weight:700;
+        font-family: 'Cabin', sans-serif; white-space:normal;
         overflow-wrap:anywhere; line-height:1.0;">
           {{ cat.name }}
         </span>
@@ -150,7 +162,7 @@
           <!--         Percentage watermark overlay         -->
           <span style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
           font-size:36px; font-weight:800; color:{{ row_fg }}; opacity:0.30; pointer-events:none;
-          white-space:nowrap; font-family: Arial, Helvetica, sans-serif;">
+          white-space:nowrap; font-family: 'Cabin', sans-serif;">
             {{ cat.pct }}
             
             
@@ -161,9 +173,9 @@
         </div>
         <!--         Amount cell: spent (upper) over budget allocated (lower)         -->
         <div style="width:80px; flex-shrink:0; display:flex; flex-direction:column; align-items:flex-end;
-        text-align:right; line-height:1.1; font-family: Arial, Helvetica, sans-serif;">
+        text-align:right; line-height:1.1; font-family: 'Cabin', sans-serif;">
           {% if cat.name == "RENT" %}
-            <span style="font-size:20px; font-weight:800; text-align:right; width:100%;">
+            <span style="font-size:20px; font-weight:700; text-align:right; width:100%;">
               {{ cat.pct }}
               
               
@@ -172,7 +184,7 @@
             
             </span>
             {% else %}
-            <span style="font-size:20px; font-weight:800; text-align:right; width:100%;">
+            <span style="font-size:20px; font-weight:700; text-align:right; width:100%;">
               
               
               $ 
