@@ -59,6 +59,16 @@ function fmt(n: number): string {
   return `${withCommas}.${decPart}`;
 }
 
+/** Format a number as a signed two-decimal string with thousands separators,
+ *  preserving a leading minus sign when negative. */
+function fmtSigned(n: number): string {
+  const sign = n < 0 ? "-" : "";
+  const fixed = Math.abs(n).toFixed(2);
+  const [intPart, decPart] = fixed.split(".");
+  const withCommas = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return `${sign}${withCommas}.${decPart}`;
+}
+
 /** Return the current-month date range using the same construction as the
  *  reference transaction function (start = `YYYY-MM-01`, end = last calendar
  *  day via `new Date(year, month, 0)`), avoiding UTC boundary drift.
@@ -190,6 +200,7 @@ Deno.serve(async (_req) => {
         name,
         budget_fmt: fmt(budget),
         spent_fmt: fmt(spent),
+        budget_left_fmt: fmtSigned(budget - spent),
         over_budget: overBudget,
         spent_ticks: spentTicks,
         pct,
@@ -228,7 +239,9 @@ Deno.serve(async (_req) => {
         month_label: monthLabel,
         total_budget_fmt: fmt(totalBudget),
         total_spent_fmt: fmt(totalSpent),
-        money_left_fmt: fmt(Math.abs(moneyLeft)),
+        budget_left_fmt: fmtSigned(moneyLeft),
+        money_left_fmt: fmtSigned(moneyLeft),
+        budget_total_fmt: fmt(totalBudget),
         over_total_budget: moneyLeft <= 0,
         percent_spent: percentSpent,
         percent_spent_fmt: percentSpentFmt,
