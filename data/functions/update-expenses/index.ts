@@ -35,9 +35,9 @@ const CATEGORY_BUDGETS: Record<string, number> = {
   "ENTERTAINMENT": 100,
   "UTILITIES": 400,
   "INSURANCE": 200,
-  "SERVICES": 100,
+  "SERVICES": 150,
   "RENT": 2427,
-  "OTHERS": 173
+  "OTHERS": 123
 };
 
 /**
