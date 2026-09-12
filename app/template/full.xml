@@ -33,10 +33,8 @@
             {% endif %}
         </span>
         <span style="font-size:60px; font-weight:800; line-height:1;">
-          $
-          {{ budget_left_fmt }}
-          /
-          ${{ budget_total_fmt }}
+          <span style="font-size:60px; font-weight:800;">${{ budget_left_fmt }}</span>
+          <span style="font-size:20px; font-weight:400;"> / ${{ budget_total_fmt }}</span>
         </span>
       </div>
       <!--         Gradient divider (under Budget Left): black fills up to percent_spent,
@@ -171,16 +169,10 @@
 
         </span>
         {% else %}
-        <span style="font-size:20px; font-weight:800; text-align:right; width:100%;">
-
-
-          $ 
-
-
-          {{ cat.spent_fmt }}
-        </span>
         <span style="font-size:12px; color:{{ sub_fg }}; text-align:right; width:100%;">
-          ${{ cat.budget_left_fmt }}/${{ cat.budget_fmt }}
+          <span style="font-size:20px; font-weight:800; color:{{ row_fg }};">${{ cat.budget_left_fmt }}</span>
+          <span> / </span>
+          <span style="font-weight:400;">${{ cat.budget_fmt }}</span>
         </span>
         {% endif %}
       </div>

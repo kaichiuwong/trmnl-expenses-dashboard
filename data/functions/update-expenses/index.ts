@@ -33,11 +33,11 @@ const CATEGORY_BUDGETS: Record<string, number> = {
   "SHOPPING": 500,
   "LIQUOR": 200,
   "ENTERTAINMENT": 100,
-  "UTILITIES": 300,
+  "UTILITIES": 400,
   "INSURANCE": 200,
-  "SERVICES": 200,
+  "SERVICES": 100,
   "RENT": 2427,
-  "OTHERS": 200
+  "OTHERS": 173
 };
 
 /**
@@ -45,7 +45,7 @@ const CATEGORY_BUDGETS: Record<string, number> = {
  * entirely (matched case-insensitively). Transactions in these categories are
  * skipped and never counted toward any budget bucket, including OTHERS.
  */
-const EXCLUDED_CATEGORIES = new Set(["salary", "bonus"]);
+const EXCLUDED_CATEGORIES = new Set(["salary", "bonus", "travel"]);
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
