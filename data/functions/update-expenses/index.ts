@@ -30,7 +30,7 @@ const CATEGORY_BUDGETS: Record<string, number> = {
   "EAT OUT": 1500,
   "TRAFFIC": 800,
   "GROCERY": 800,
-  "SHOPPING": 500,
+  "SHOPPING": 300,
   "LIQUOR": 200,
   "ENTERTAINMENT": 100,
   "UTILITIES": 400,
