@@ -27,7 +27,7 @@
 
       <div style="display:flex; justify-content:space-between; align-items:baseline; background:{{ bl_bg }}; color:{{ bl_fg }};">
         <span style="font-size:40px; font-weight:300; font-family: 'Cabin';">
-          Budget
+          Budget Left
           {% if percent_left <= 10 %}
             ⚠
             {% endif %}
